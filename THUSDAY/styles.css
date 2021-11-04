@@ -1,0 +1,2583 @@
+*{
+    box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+  padding:0;
+  margin:0;
+  background-color: #DCBFB6;
+  /* background-color: #F3DBDB; */
+}
+
+:root {
+  /* Changes the primary theme color */
+  --sl-color-primary-500: var(--sl-color-red-900);
+  --sl-color-primary-600: var(--sl-color-red-900);
+  font-size: var(--sl-input-label-font-size-medium)
+}
+
+h1{
+  font-family: "Noto Serif Display";
+  font-weight: 700;
+  font-size: 5vw;
+  letter-spacing: 1px;
+  line-height: 4vw;
+  margin-bottom: -.5vw;
+  color:rgb(78, 17, 17);
+}
+
+h2{
+  font-family: "Noto Serif Display";
+  font-weight: 700;
+  font-size: 4vw;  
+  margin: 0px;
+  margin-bottom: 1vw;
+  color:rgb(78, 17, 17);
+}
+
+h3{
+  font-family: "Noto Serif Display";
+  font-weight: 700;
+  font-size: 2vw;  
+  color:rgb(78, 17, 17);
+}
+
+h4{
+  font-family: "Manrope";
+  font-weight: 500;  font-size: 1.5vw;   
+}
+
+p{
+  font-size: 1.5vw;
+  font-family: "Manrope";
+  font-weight: 500;
+  line-height: 2.3vw;
+}
+
+/* stars */
+
+.star{
+  position: absolute;
+  z-index: 300;
+  animation: wobble 2s ease-in-out alternate infinite;
+}
+
+@keyframes wobble{  /* changing the scale an opacity of the stars to give the impress that they are sparkling */
+
+  0%{
+    opacity: 100%;
+    transform: scale(1.1);
+  }
+
+  100%{
+    opacity: 30%;
+    transform: rotate(25deg);
+    transform: scale(1.9);
+  }        
+
+}
+
+/*opening sequence styling*/
+.bg-div{
+  object-fit: cover;   /* so the image takes up the viewport height and width to seem full screen */
+  width: 100vw;
+  height: 100vh; 
+  justify-content: center;
+}
+
+.image-content{
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-div img{
+  object-fit: cover;  
+}
+
+.furnace-image{
+  width: 100%;
+  height: 100%;
+}
+
+
+.stick{
+  position: absolute; /* to sit ontop of the image, moved as well */
+  z-index: 100;
+  bottom:-3%;
+  right: 50%;
+  width:23vw;
+  transition: all 2s cubic-bezier(.23,.34,.28,1.07); /* to allow for smooth transition on hover */
+  animation: stick 1.5s alternate infinite ease-in-out; /* animation to make the down icon visible as a cue to the viewer*/
+}
+
+
+.stick:hover{
+  transform: scale(1.08); /* hover to indicate functionality */
+}
+
+.fire-text{
+  position: absolute;
+  z-index: 101;
+  top:20%;
+  left: 38%;
+  text-align: center;
+}
+
+.fire-title{
+  font-size: 6vw;
+  line-height: 5vw;
+  margin-bottom: 0.5vw;
+  color: rgb(50, 0, 0);
+}
+
+.opening-para{
+  line-height: 2.5vw;
+  margin: 1vw;
+  font-family: "Manrope";
+  font-weight: 500; 
+  color: rgb(50, 0, 0);
+}
+
+.total{
+  display: none; /* having the total div as noneso that the fire opneing scene is the only thing viisble as the page loads*/
+}
+
+.flames{
+  width: 100%;
+  position: absolute;
+  z-index: 900;
+  top: 0%
+}
+
+/* homescreen*/
+
+.header{
+  z-index: 500;
+  position: relative; /* so it can sit ontop of the homepage image*/
+}
+
+.hamburger {
+  display: none; /* not needed until repsonive breakpoint*/
+}
+
+.bar {
+  display: block; /* to create the hamburger button shape*/
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  /* -webkit-transition: all 0.3s ease-in-out; */
+  transition: all 0.3s ease-in-out;
+  background-color: #101010;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-item {
+  margin-left: 5rem;
+}
+
+.header-logo{
+  width: 11%;
+  left: 1%;
+  top: 18%;
+  position: absolute;
+  display: none;
+}
+
+.nav-link{
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #475569;
+}
+
+.navbar a{
+  font-family: "Noto Serif Display";
+  font-weight: 700;  
+  color: #999;
+  font-size: 1.6vw;
+  padding-bottom: 10px;
+  margin-right: 1vw;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) bottom / 0 .1em no-repeat; /* to create the underlining aniamtion*/
+  transition: 0.5s;
+  background-position: center bottom;  /* so line comes out from the bottom centre of the word*/
+  list-style: none;
+  /* http://jsfiddle.net/Markus_Steiger/wch6ara7/ */
+}
+
+a:hover {
+  color:rgb(78, 17, 17);
+  background-size: 100% .06em;
+}
+   
+.navbar {
+  position: fixed;
+  top: -10px;
+  left: 0;
+  right: 0;
+  width: 99%;
+  display: flex;
+  z-index: 201;
+  justify-content: right;
+  transition: all 0.6s cubic-bezier(.4,.08,0,1.02);
+}
+
+.hamburger {
+  display: none;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #101010;
+}
+
+svg{
+  width: 30vw;
+  margin-bottom: 2vw;
+}
+
+.svg-wrapper{
+  position: absolute;
+  right: 8vw;
+  top: 13%;
+}
+
+#opening{
+  position: relative; /* so the textbox can sit on top of it*/
+  object-fit: cover;  /* so the image takes up 100% of the parent div*/
+  width: 100vw;
+  height: 100vh; 
+  justify-content: center;
+}
+
+.glass-bg img{
+  object-fit: cover;
+  height: 100vh;
+}
+
+.bg-image{
+  width: 100%;
+  height: 100%;
+}
+
+.info-box{
+  position: absolute;
+  right: 7%;
+  top: 40%;
+  text-align: center;
+  width: 31vw;
+  margin: auto;
+}
+
+.opening-icons{
+  position: absolute;
+  top: 100%;
+  right: 37%;
+}
+
+.opening-text h3{
+  font-size: 1.6vw;
+  font-family: "Manrope";
+  font-weight: 500;
+}
+
+.opening-title{
+  font-size: 4vw;
+  margin: 0px;
+}
+
+.play-button{
+  font-size: 6vw;
+}
+
+.opening-icons{
+  position: absolute;
+  bottom: 30%;
+}
+
+.play-button::part(base) {
+  color:rgb(78, 17, 17);
+  transition: all 1s cubic-bezier(.23,.34,.28,1.07);
+}
+
+sl-icon-button.play-button::part(base):hover {
+  color: rgb(199, 98, 98);
+}
+
+.down{
+  font-size: 3vw;
+  text-align: center;
+  margin: auto;
+  padding-top: 2.5vw;
+  animation: bounce 1.5s alternate infinite ease-in-out; /* animation to make the down icon visible as a cue to the viewer*/
+}
+
+@keyframes bounce{
+  0%{
+    transform: translateX(0);
+    color: rgb(199, 98, 98);  
+  }
+  
+  100%{
+    transform: translateY(-2vw);
+  }
+}
+
+/*product table*/
+
+
+sl-button::part(base) {
+  /* Set design tokens for height and border width */
+  background-color: #ca82823b;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  font-family: "Manrope";
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: all 1s cubic-bezier(.23,.34,.28,1.07);
+}
+
+sl-button::part(base):hover {
+  background-color: #701717b0;
+  color: rgb(255, 255, 255);
+}
+
+sl-tooltip::part(base) {
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  font-family: "Manrope";
+  font-weight: 500;
+}
+
+.img-bg{
+  height:50vw;
+  width: 100%; /*to take up the whole screen width*/
+}
+
+.table{
+  height:100%;
+  width: 100%;
+}
+
+#product-table{
+  position: relative;
+  width: 100vw
+}
+
+.products-parent{
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 0px;
+  margin: auto;
+  top: 0vw;
+}
+
+
+.products-textbox{
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+.products-text{
+  font-family: "Noto Serif Display";
+  font-weight: 700;
+  font-size: 2vw;
+  margin-bottom: 0.5vw;
+}
+
+.products-instructions{
+  font-size: 1.5vw;
+  margin-top: 3px;
+}
+
+.product-images{
+  width: 100%;
+  margin: auto;
+}
+
+.costs{
+  font-size: 2vw;
+}
+
+.product-images img{
+  position: absolute;
+  transition: all 0.5s cubic-bezier(.23,.34,.28,1.07);
+}
+
+.product-images img:hover{
+  filter: drop-shadow(15px 15px 10px rgba(0, 0, 0, 0.67));
+  z-index: 150;
+}
+
+.tableprod1{ /*giving each item on the table a respective width and positioning*/
+  height:22vw; 
+  top: 23vw;
+  z-index: 100;
+}
+
+.tableprod2{
+  height:24vw; 
+  left: 14%;
+  top: 21vw;
+}
+
+.tableprod3{
+  height:22vw; 
+  left: 28%;
+  top: 23vw;
+}
+
+.tableprod4{
+  height:22vw; 
+  left: 38%;
+  z-index: 100;
+  top: 21vw;
+}
+
+.tableprod5{
+  height:22vw; 
+  left: 49%;
+  top: 22vw;
+}
+
+.tableprod6{
+  height:20vw; 
+  left: 63%;
+  top: 24vw;
+  z-index: 99;
+}
+
+.tableprod7{
+  height:16vw; 
+  left: 80%;
+  top: 27vw;
+}
+
+.dialog-overview::part(base){ /*styling the shoelace dialog box*/
+  height: 100%;
+}
+
+.dialog-overview::part(panel){
+  width: 60vw;;
+}
+
+.pop-up-content { /*flex to allow the two boxes to sit side by side to each other*/
+  display: flex;
+}
+
+.pop-img-side{ /*settign widths so they fit horizontally*/
+  width: 40%;
+}
+.pop-text-side{
+  width: 55%;
+}
+
+.colour-circles div{ 
+  display: inline-block; /*so each colour swatch sits enext to each other*/
+  margin-right: 1vw;
+}
+
+.col{
+  height: 2vw;
+  width: 2vw;
+  border-radius: 50%; /*for circle*/
+  z-index: 105;
+}
+
+.col:hover{
+  box-shadow: 5px 10px 10px rgba(59, 0, 0, 0.135);
+}
+
+.pop-up-titles{
+  font-size: 3.8vw;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+.cir-1a, .cir-2a{ /*setting all the different swatch colours for the different vases */
+  background-color: rgb(1, 3, 119);
+}
+
+.cir-1b, .cir-2b {
+  background-color: rgb(172, 34, 203);
+}
+
+.cir-1c{
+  background-color: rgb(69, 238, 153);
+}
+
+.cir-2a{
+  background-color: rgb(236, 102, 140);
+}
+
+.cir-2c{
+  background-color: rgb(255, 184, 71);
+}
+
+.cir-3a{
+  background-color: rgb(120, 7, 100);
+}
+
+.cir-3b{
+  background-color: rgb(63, 7, 73);
+}
+
+.cir-3c{
+  background-color: rgb(40, 40, 40);
+}
+
+.cir-4a{
+  background-color: rgb(45, 227, 182);
+}
+
+.cir-4b{
+  background-color: rgb(120, 86, 233);
+}
+
+.cir-4c{
+  background-color: rgb(29, 182, 88);
+}
+
+.cir-5a{
+  background-color: rgb(187, 14, 126);
+}
+
+.cir-5b{
+  background-color: rgb(86, 233, 184);
+}
+
+.cir-5c{
+  background-color: rgb(159, 29, 182);
+}
+
+.cir-6a{
+  background-color: rgb(35, 214, 193);
+}
+
+.cir-6b{
+  background-color: rgb(150, 86, 233);
+}
+
+.cir-6c{
+  background-color: rgb(154, 233, 36);
+}
+
+.cir-7a{
+  background-color: rgb(214, 80, 35);
+}
+
+.cir-7b{
+  background-color: rgb(233, 86, 152);
+}
+
+.cir-7c{
+  background-color: rgb(255, 244, 44);
+}
+
+sl-button.closebuttonp2::part(base){
+  font-size: 1vw;
+}
+
+.displayv7{
+  margin-left: 50px;
+}
+
+
+/* .PRODUCT GRID FORMAT */ 
+
+.products-grid-layout{
+  display: none;  /* not needed until repsonsive */ 
+}
+
+.scene {
+  width: 31vw;
+  height: 41vw;
+  margin: .7vw;
+  perspective: 600px; /*to create the flipping angle*/
+}
+  
+.card-style {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-style.is-flipped {
+  transform: rotateY(180deg); /*rotating the card*/
+}
+
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; /*hiding back of the card*/
+}
+
+.card__face--front { /*stlying for front and the inclusion of the transition effects*/
+  background-color: rgba(255, 255, 255, 0.149);
+  box-shadow: 5px 10px 18px rgba(151, 102, 102, 0.355);
+  border-radius: 50px; /*rounding corners of cards*/
+  transition: all 1s cubic-bezier(.23,.34,.28,1.07);
+}
+
+.card__face--back { /*stylign for back*/
+  background-color: rgba(255, 255, 255, 0.608);
+  border-radius: 50px;
+  transform: rotateY(180deg);
+  box-shadow: 5px 10px 18px rgb(151, 102, 102); /*shadow*/
+}
+  
+.grouping{ /*group that all the cards sit in*/
+  display: flex; /*flex so that they wrap under each other in respsonive on a line*/
+  flex-wrap: wrap; 
+  justify-content: center;
+  width: 100%;
+  padding: 10px; 
+  position: relative;
+}
+
+.grouping h2{
+  font-family: "Noto Serif Display";
+  font-weight: 700;
+  margin: 0px;
+  font-size: 2.5vw;
+}
+
+.card__face--front p{
+  color: black;
+  margin: 1vw;
+  font-family: "Manrope";
+  font-weight: 500;
+}
+
+
+
+.card__face--front:hover{
+  z-index: 150;
+  background-color: rgba(255, 255, 255, 0.608);
+}
+
+.colour-circles-table div {
+  display: inline-block;
+  z-index: 500;
+}
+
+.colour-circles-table {
+  right: 38%;
+  position: absolute;
+  display: inline-block;
+}
+
+.col{
+  z-index: 500;
+}
+
+.card-back-text{
+  text-align: center;
+  margin: auto;
+  padding: 2vw;
+  font-size: 2vw;
+  color: black;
+}
+
+.closebutton-table{
+  position: absolute;
+  right: 35%;
+  font-size: 40px;
+}
+
+.products768{ 
+  display:none; /*so that breaks dont occur until needed in responsive*/
+}
+
+.break360{
+  display:none; /*so that breaks dont occur until needed in responsive*/
+}
+
+/* PROCESS CARO*/
+
+#process-caro{
+  height: 100%;
+}
+
+.process-textbox{
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.process-text{
+  margin-bottom: 0.5vw;
+}
+
+.caro-section{
+  text-align: center;
+  margin: auto;
+  position: relative;
+  margin-bottom: 2vw;
+}
+
+.swiper {
+  width: 100vw; /*so the carosuel goes all the way to the edge to give the impression that there are some frames still hanging over*/
+  padding-top: 3vw;
+  padding-bottom: 10vw;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 90%;
+  height: 55vw;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.slide-frame-1{
+  position: relative; 
+}
+
+.text-for-frames{
+  position: absolute; /*so the text can sit on top of the frame*/
+  top: 10%;
+  width: 30%;
+  right: 10%;
+  text-align: left;
+  height: 100%;
+}
+
+.frame-paras{
+  width: 25%
+}
+
+.frame1-para{
+  top: 10%;
+  right: 35%;
+  width: 100%
+}
+
+.frame1-title{
+  font-size: 4vw;
+}
+
+.responsive-frame-instructions{
+  width: 100%;
+  margin-top: 0px;
+}
+
+.tabs{
+  text-align: center;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+
+.tabbys::part(body){
+  height: 100%; /*acount for 100% of the content within the tab*/
+}
+
+.caro-section{
+  height: 100%;
+}
+
+.tab-titles::part(base){
+  color:rgb(78, 17, 17);
+  font-size: 1.5vw;
+  padding-left: 60px;
+  padding-right: 60px;
+  font-family: "Manrope";
+  font-weight: 700;
+}
+
+.tab-base::part(base){
+  color: rgb(0, 0, 0);
+  background-color: #ffffff8d;
+  height: 100%;
+  font-size: 1.5vw;
+  font-family: "Manrope";
+  font-weight: 500;
+}
+
+.tab-titles::part(base):hover{
+  color: rgb(129, 76, 76);
+}
+
+.please{
+  height: 100%
+}
+
+.panel-dop{
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  height: 100%;
+}
+
+.panel-dop img{
+  width: 25%;
+  margin: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.firstcharacter { /*stlying for drop caps*/
+  color:rgb(78, 17, 17);
+  float: left;
+  font-family: "Rozha One";
+  font-size: 13vw;
+  line-height: 60px;
+  padding-top:2.5vw;
+  padding-bottom:3vw;
+  padding-right: 10px;
+  padding-left: 3px;
+}
+
+.panel-text{
+  padding: 20px;
+  width: 80%;
+  text-align: left;
+  margin: auto; 
+}
+
+.tab-header{
+  display: block;
+  text-align: center;
+  margin: auto;
+  font-size: 3vw;
+  margin-bottom:1vw;
+}
+
+.imitations{
+  padding-top: 20px;
+}
+
+.gondola-div{
+  width: 100%;
+  margin:auto;
+  overflow:hidden; /*so that the animation only appears in the div, giving the impression it swims into the distance contained in the div */
+}
+
+.gondola{
+  width: 30%;
+}
+
+.textleft, .textright{
+  width: 45%;
+}
+
+.blocked-text div{
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  padding: 20px;
+}
+
+.textleft h3{
+  margin-bottom: 10px;
+}
+
+.textright h3{
+  margin-bottom: 10px;
+}
+
+.h5{
+  font-size: 3vw;
+  color:rgb(78, 17, 17);
+}
+
+sl-tab-group::part(body) {
+  height: 100%;
+}
+
+.tab-base::part(base) {
+  height: auto;
+}
+
+.tabs{
+  height: 85vw;
+}
+
+/*  about us */
+
+.circle-indicators::part(base) { /* styling of showlace buttons to change upon hover and clicking */
+  color:rgb(78, 17, 17);
+}
+
+.circle-indicators::part(base):hover,
+.circle-indicators::part(base):focus {
+  color: #ca8282;
+}
+
+.circle-indicators{
+  animation: dotty 2s ease-in-out alternate infinite;
+}
+
+@keyframes dotty{
+  0%{
+    /* transform: translateY(0); */
+    transform: scale(1);
+  }
+  
+  100%{
+    transform: scale(1.05); /* hover to indicate functionality */
+  }
+}
+
+#about-us{
+  height: 100%;
+  width: 100vw
+}
+
+.table{
+  height:100%;
+  width: 100%;
+}
+
+.about-textbox{
+  text-align: center;
+}
+
+.about-text{
+  font-family: "Noto Serif Display";
+  font-weight: 700;  
+  font-size: 2vw;
+  margin-bottom: 5px;
+  line-height: 2.5vw;
+}
+
+.about-instructions{
+  margin-top: 3px;
+}
+
+.frames{
+  width: 100%;
+  margin-top: auto;
+}
+
+.positioned-elements{
+  position: relative;
+}
+
+.frames{
+  width: 100%;
+  height: 100%;
+  position: relative; /*  to allow for the clickable buttons to be positioned depending on where the frame is */
+}
+
+.f2{
+  width: 100%;
+  height: 100%;
+}
+
+.circle-indicators{
+  font-size: 3vw;
+  z-index: 101;
+  position: absolute;
+}
+
+.b1{
+  left: 6%; /* changing the position of all the buttons on the page*/
+  bottom: 80%;
+}
+
+.b2{
+  left: 15%;
+  bottom: 25%;
+}
+
+.b3{
+  left: 25%;
+  bottom: 50%;
+}
+
+.b4{
+  left: 37%;
+  bottom: 56%;
+}
+
+.b5{
+  left: 63%;
+  bottom: 40%;
+}
+
+.b6{
+  left: 66%;
+  bottom: 75%;
+}
+
+
+.below-text{
+  text-align: left;
+  margin: auto;
+  width: 75%;
+  height: 100%;
+  position: relative; /* relative so that each text div can be positioned on top of each other, chanign their opacity going in out and out in JS depending on which frame is clicked */
+}
+
+
+.about-texts{
+  background-color: #ffffff8d;
+  width: 100%;
+  margin-top: 2vw;
+  margin-bottom: 3vw;
+  padding: 2vw;
+  height: 100%;
+  top: -8%;
+  line-height: 2.3vw;
+}
+
+.about-texts h5{
+  font-size: 3vw;
+  margin: 0px;
+  margin-bottom: 2vw;
+  text-align: center;
+  font-family: "Noto Serif Display";
+  font-weight: 700; 
+  color:rgb(78, 17, 17);
+}
+
+.about-texts p{
+  text-align: left;
+}
+
+.box2{
+  opacity: 0; /* initaly styling of all the textboxes not seen at the start. 0 opacity so they arent seen, yet absoluste so they stack on top of each other until needed */
+  position: absolute;
+  top: -8%;
+}
+
+.box3{
+  opacity: 0;
+  position: absolute;
+  top: -8%;
+}
+
+.box4{
+  opacity: 0;
+  position: absolute;
+  top: -8%;
+}
+
+.box5{
+  opacity: 0;
+  position: absolute;
+  top: -8%;
+}
+
+.box6{
+  opacity: 0;
+  position: absolute;
+  top: -8%;
+}
+
+/* INQUIRIES */
+
+#inquiries{
+  width: 100vw;
+}
+
+.inq{
+  display: flex; /* so text and form can sit side by side */
+  flex-wrap: wrap;
+  margin: 4vw;
+  margin-top: 4vw;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+.text-side{
+  width: 35%;
+  margin-right: 90px;
+}
+
+.text-side div{
+  display: block;
+}
+
+.form-side{
+  width: 50%;
+}
+
+.inq-title{
+  margin-top: 0px;
+}
+
+.inq-pull-out{
+  line-height: 2.5vw;
+  margin-top: 3vw;
+}
+
+.input-validation-required::part(base) {
+  color: #000000;
+  width: 50vw;  /*set width for the entire rows of the input fields */
+  display: flex; /* flex so that they can fall under each other */
+  flex-wrap: wrap;
+  font-family: "Manrope";
+  font-weight: 500;
+}
+
+.product-select{
+  width: 50vw;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.fields{
+  width: 25vw; /* half the field size so that two can be placed on the line at one time to be more aesehtically pleasing*/
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.comment{
+  width: 50vw;
+  padding-right: 10px;
+}
+
+.check{
+  width: 53vw;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+
+
+.venice{
+  width: 100vw;
+  height: 80%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -4px;
+}
+
+.ven1{
+  height: 80%;
+  width: 100%;
+  left: 0%;
+  z-index: 3;
+  position: relative;
+}
+
+.ven2{
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  left: 0%;
+  bottom: 1%;
+  z-index: 2;
+}
+
+.apresto{
+  position: absolute;
+  bottom:1%;
+  left: 25%;
+  z-index: 100;
+}
+
+.venice h1{
+  color: rgba(255, 255, 255, 0.567);
+}
+
+.venice h5{
+  color: rgba(255, 255, 255, 0.567);
+  font-size: 1.5vw;
+  margin-top: 10px;
+  font-family: "Manrope";
+  font-weight: 500;
+}
+
+
+.thankyou-message{
+  text-align: left;
+  width: 50%;
+  margin: auto;
+  height: 100%;
+  background-color: rgba(78, 17, 17, 0.6);
+  border-radius: 30px;
+  box-shadow: 0 10px 27px rgba(0, 0, 0, 0.608);
+  display: none;
+  transition: all 2s cubic-bezier(.23,.34,.28,1.07); /* to allow for smooth transition on hover */
+}
+
+.thanks-content{
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  color: white;
+}
+
+.thanks-content h1{
+  font-size: 4vw;
+  color: white;
+  padding-top: 1vw;
+}
+
+.thanks-content h5{
+  font-size: 2vw;
+  margin: 0px;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.thanks-content p{
+  font-size: 1vw;
+  margin-top: 1vw;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  line-height: 1.5vw;
+}
+
+.thanks-button::part(base) {
+  /* Set design tokens for height and border width */
+  background-color:white;
+  }
+
+/* footer */
+
+footer{
+  background-color: rgba(78, 17, 17, 0.6);
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  vertical-align: center;
+}
+
+.footer-logo{
+  width: 14vw;
+  vertical-align: center;
+  padding-right:3vw;
+}
+
+footer p{
+  font-size: 1vw;
+  padding-right:4vw;
+  color: white;
+}
+
+.sm-icons{
+  padding-right: 1vw;
+  font-size: 1vw;
+  padding-top: 0.6vw;
+}
+
+.sm-icons::part(base){
+  color: white;
+}
+
+.sm-icons::part(base):hover{
+  color: rgb(199, 98, 98);
+}
+
+
+
+/***************************************************
+ * Generated by SVG Artista on 11/1/2021, 10:36:21 PM
+ * MIT license (https://opensource.org/licenses/MIT)
+ * W. https://svgartista.net
+ **************************************************/
+
+ svg .svg-elem-1{stroke-dashoffset:359.2580261230469px;stroke-dasharray:359.2580261230469px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 0.8s}svg.active .svg-elem-1{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-2{stroke-dashoffset:421.25189208984375px;stroke-dasharray:421.25189208984375px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.12s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 0.9s}svg.active .svg-elem-2{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-3{stroke-dashoffset:205.84002685546875px;stroke-dasharray:205.84002685546875px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.24s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1s}svg.active .svg-elem-3{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-4{stroke-dashoffset:352.7769775390625px;stroke-dasharray:352.7769775390625px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.36s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.1s}svg.active .svg-elem-4{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-5{stroke-dashoffset:432.9342041015625px;stroke-dasharray:432.9342041015625px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.48s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.2000000000000002s}svg.active .svg-elem-5{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-6{stroke-dashoffset:380.3162841796875px;stroke-dasharray:380.3162841796875px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.6s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.3s}svg.active .svg-elem-6{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-7{stroke-dashoffset:352.66400146484375px;stroke-dasharray:352.66400146484375px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.72s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.4000000000000001s}svg.active .svg-elem-7{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-8{stroke-dashoffset:338.2378234863281px;stroke-dasharray:338.2378234863281px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.84s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.5s}svg.active .svg-elem-8{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-9{stroke-dashoffset:201.85267639160156px;stroke-dasharray:201.85267639160156px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 0.96s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.6s}svg.active .svg-elem-9{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-10{stroke-dashoffset:227.86764526367188px;stroke-dasharray:227.86764526367188px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.08s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.7000000000000002s}svg.active .svg-elem-10{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-11{stroke-dashoffset:204.36219787597656px;stroke-dasharray:204.36219787597656px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.2s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.8s}svg.active .svg-elem-11{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-12{stroke-dashoffset:256.0513610839844px;stroke-dasharray:256.0513610839844px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.3199999999999998s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 1.9000000000000001s}svg.active .svg-elem-12{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-13{stroke-dashoffset:231.86500549316406px;stroke-dasharray:231.86500549316406px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.44s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2s}svg.active .svg-elem-13{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-14{stroke-dashoffset:232.434326171875px;stroke-dasharray:232.434326171875px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.56s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.1s}svg.active .svg-elem-14{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-15{stroke-dashoffset:127.89997100830078px;stroke-dasharray:127.89997100830078px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.68s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.2s}svg.active .svg-elem-15{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-16{stroke-dashoffset:204.36279296875px;stroke-dasharray:204.36279296875px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.7999999999999998s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.3s}svg.active .svg-elem-16{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-17{stroke-dashoffset:179.7229461669922px;stroke-dasharray:179.7229461669922px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 1.92s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.4000000000000004s}svg.active .svg-elem-17{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-18{stroke-dashoffset:179.704833984375px;stroke-dasharray:179.704833984375px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.04s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.5s}svg.active .svg-elem-18{stroke-dashoffset:0;fill:rgb(0,0,0)}svg .svg-elem-19{stroke-dashoffset:330.74493408203125px;stroke-dasharray:330.74493408203125px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.16s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.6s}svg.active .svg-elem-19{stroke-dashoffset:0;fill:rgb(228,30,38)}svg .svg-elem-20{stroke-dashoffset:375.0920715332031px;stroke-dasharray:375.0920715332031px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.28s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.7s}svg.active .svg-elem-20{stroke-dashoffset:0;fill:rgb(32,36,43)}svg .svg-elem-21{stroke-dashoffset:338.43792724609375px;stroke-dasharray:338.43792724609375px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.4s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.8s}svg.active .svg-elem-21{stroke-dashoffset:0;fill:rgb(238,128,25)}svg .svg-elem-22{stroke-dashoffset:466.06048583984375px;stroke-dasharray:466.06048583984375px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.52s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 2.9000000000000004s}svg.active .svg-elem-22{stroke-dashoffset:0;fill:rgb(229,30,37)}svg .svg-elem-23{stroke-dashoffset:26.080337524414062px;stroke-dasharray:26.080337524414062px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.6399999999999997s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3s}svg.active .svg-elem-23{stroke-dashoffset:0;fill:rgb(32,36,43)}svg .svg-elem-24{stroke-dashoffset:569.956787109375px;stroke-dasharray:569.956787109375px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.76s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.1000000000000005s}svg.active .svg-elem-24{stroke-dashoffset:0;fill:rgb(255,218,88)}svg .svg-elem-25{stroke-dashoffset:643.2806396484375px;stroke-dasharray:643.2806396484375px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 2.88s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.2s}svg.active .svg-elem-25{stroke-dashoffset:0;fill:rgb(248,170,72)}svg .svg-elem-26{stroke-dashoffset:634.29638671875px;stroke-dasharray:634.29638671875px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.3s}svg.active .svg-elem-26{stroke-dashoffset:0;fill:rgb(229,27,36)}svg .svg-elem-27{stroke-dashoffset:610.0914306640625px;stroke-dasharray:610.0914306640625px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.12s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.4000000000000004s}svg.active .svg-elem-27{stroke-dashoffset:0;fill:rgb(255,255,227)}svg .svg-elem-28{stroke-dashoffset:200.28330993652344px;stroke-dasharray:200.28330993652344px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.2399999999999998s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.5s}svg.active .svg-elem-28{stroke-dashoffset:0;fill:rgb(255,227,123)}svg .svg-elem-29{stroke-dashoffset:620.2015991210938px;stroke-dasharray:620.2015991210938px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.36s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.6000000000000005s}svg.active .svg-elem-29{stroke-dashoffset:0;fill:rgb(251,180,7)}svg .svg-elem-30{stroke-dashoffset:178.98011779785156px;stroke-dasharray:178.98011779785156px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.48s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.7s}svg.active .svg-elem-30{stroke-dashoffset:0;fill:rgb(255,255,190)}svg .svg-elem-31{stroke-dashoffset:100.99141693115234px;stroke-dasharray:100.99141693115234px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.5999999999999996s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.8s}svg.active .svg-elem-31{stroke-dashoffset:0;fill:rgb(254,255,255)}svg .svg-elem-32{stroke-dashoffset:405.6056823730469px;stroke-dasharray:405.6056823730469px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.7199999999999998s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 3.9000000000000004s}svg.active .svg-elem-32{stroke-dashoffset:0;fill:rgb(179,64,144)}svg .svg-elem-33{stroke-dashoffset:2.3889724612236023px;stroke-dasharray:2.3889724612236023px;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.84s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4s}svg.active .svg-elem-33{stroke-dashoffset:0}svg .svg-elem-34{stroke-dashoffset:3.132429599761963px;stroke-dasharray:3.132429599761963px;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 3.96s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4.1000000000000005s}svg.active .svg-elem-34{stroke-dashoffset:0}svg .svg-elem-35{stroke-dashoffset:5.96714973449707px;stroke-dasharray:5.96714973449707px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 4.08s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4.2s}svg.active .svg-elem-35{stroke-dashoffset:0;fill:rgb(255,255,255)}svg .svg-elem-36{stroke-dashoffset:985.3688354492188px;stroke-dasharray:985.3688354492188px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 4.2s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4.3s}svg.active .svg-elem-36{stroke-dashoffset:0;fill:rgb(36,37,36)}svg .svg-elem-37{stroke-dashoffset:376.5013122558594px;stroke-dasharray:376.5013122558594px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 4.32s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4.4s}svg.active .svg-elem-37{stroke-dashoffset:0;fill:rgb(255,255,255)}svg .svg-elem-38{stroke-dashoffset:2px;stroke-dasharray:2px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 4.4399999999999995s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4.5s}svg.active .svg-elem-38{stroke-dashoffset:0;fill:rgb(32,36,43)}svg .svg-elem-39{stroke-dashoffset:440.3853759765625px;stroke-dasharray:440.3853759765625px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 4.56s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4.6000000000000005s}svg.active .svg-elem-39{stroke-dashoffset:0;fill:rgb(255,255,255)}svg .svg-elem-40{stroke-dashoffset:326.95806884765625px;stroke-dasharray:326.95806884765625px;fill:transparent;transition:stroke-dashoffset 1s cubic-bezier(0.47,0,0.745,0.715) 4.68s,fill 0.7s cubic-bezier(0.47,0,0.745,0.715) 4.7s}svg.active .svg-elem-40{stroke-dashoffset:0;fill:rgb(32,36,43)}
+ 
+
+/*optimising for width of 1024*/
+@media only screen and (max-width: 1024px) {
+
+  .stick{
+    bottom: 0%;
+    right: 45%;
+    width:35vw;
+  }
+  
+  .fire-text{
+    top:30%;
+  }
+
+  .fire-title{
+    font-size: 7vw;
+    line-height: 6vw;
+  }
+  
+  svg{
+    width: 35vw;
+    margin-bottom: 2vw;
+  }
+  
+  .svg-wrapper{
+    right: 6%;
+    top: 19%;
+  }
+ 
+  .info-box{
+    position: absolute;
+    right: 7%;
+    top: 45%;
+    text-align: center;
+    width: 31vw;
+    margin: auto;
+  }
+  
+  .opening-text h3{
+    font-size: 2vw;
+  }
+  
+  .opening-title{
+    font-size: 4.5vw;
+    margin: 0px;
+  }
+ 
+}
+
+/*optimising for width of 768, height of 1024*/
+
+/* MOBILE --------------------------------*/
+@media only screen and (max-width: 768px) {
+
+
+  p{
+    line-height: 5.3vw;
+  }
+
+  :root {
+    
+    font-size: var(--sl-input-label-font-size-larger)
+  }
+
+  .nav-menu {
+    position: fixed;
+    left: -103%;
+    top: -150%;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    height: 100vh;
+    background: rgb(113, 67, 67);
+  }
+
+  .nav-menu.active {
+    left: -1%;
+  }
+
+  .nav-item {
+    margin: 2.5rem 0;
+  }
+
+  .hamburger {
+    display: block; /*so the hamburger button is now visible*/
+    cursor: pointer;
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); /*to give the impression of it moving to the cross*/
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .navbar {
+    justify-content: left; /*so the hamburger button is in the left hand corner, not right like the links were before */
+    top: 0.5%;
+    left: 0.5%;
+  }
+
+  .navbar a{
+    color: rgb(255, 255, 255);
+    font-size: 4vw;
+    display: block;
+    padding: 0.5em;
+    padding-bottom: 30px;
+    background-position: left bottom;  
+    /* http://jsfiddle.net/Markus_Steiger/wch6ara7/ */
+  }
+
+  .header-logo{
+    width: 40vw;
+    padding-top: 20px;
+    position: static;
+  }
+
+  .bg-div{
+    object-fit: cover;   /* so the image takes up the viewport height and width to seem full screen*/
+    width: 100vw;
+    height: 100vh; 
+    justify-content: center;
+  }
+
+  .bg-div img{
+    object-fit: cover;  
+  }
+
+  .furnace-image{
+    width: 100%;
+    height: 100%;
+  }
+
+  .stick{
+    bottom:0.5vw;
+    right: 40%;
+    width:50vw;
+  }
+
+  .fire-text{
+    top:25%;
+    left: 28%;
+    text-align: center;
+  }
+
+  .fire-title{
+    font-size: 14vw;
+    line-height: 12vw;
+    margin-bottom: 0.5vw;
+  }
+
+  .opening-para{
+    line-height: 5vw;
+    font-size: 4vw;
+    margin-top: 3vw;
+  }
+
+  a:hover {
+    background-size: 100% .06em;
+  }
+
+
+  .break360{
+    display: none; /*so that breaks dont occur until needed in responsive*/
+  }
+
+  .drop360{
+    display: none; 
+  }
+
+  /* homepage */
+
+  svg{
+    width: 60vw;
+  }
+
+  .svg-wrapper{
+    right: 5vw;
+    top: 0%;
+  }
+
+  .info-box{
+    right: 5vw;
+    top: 16%;
+    width: 35%;
+  }
+
+  .opening-title{
+    font-size: 8vw;
+    line-height: 60px;
+  }
+
+  .opening-text h3{
+    font-size: 3vw;
+  }
+
+  .drop768{
+    display: none; /*dropping br's that have this so that they don;t effect the line lengths and kerning*/
+  }
+
+  h1{
+    font-size: 13vw;
+    margin-bottom: 7vw;
+  }
+
+  h2{
+    font-size: 7vw;  
+  }
+
+  h3{
+    font-size: 5vw;  
+    margin: 3vw; 
+  }
+
+  .play-button{
+    font-size: 11vw;
+    bottom: -200px;
+  }
+
+  .opening-icons{
+    top: 111%;
+    right: 30%;
+  }
+
+  @keyframes bounce{
+    0%{
+      transform: translateY(27vw);
+    }
+    
+    100%{
+      transform: translateY(28vw);
+    } 
+  }
+
+
+  /*product table*/
+
+  #product-table{
+    display:none; /*so this view is no longer visible leaving onlt the product flip cards for better vieability*/
+  }
+
+  /* .PRODUCT GRID FORMAT */
+
+  .products-grid-layout{
+    display: block;
+  }
+
+  .grid-textbox {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+  }
+
+  .products-text{
+    font-size: 5vw;
+    line-height: 6vw;
+  }
+
+  .products-instructions{
+    font-size: 4vw;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    margin-top: 2vw;
+    margin-bottom: 5vw;
+    padding-left: 2vw;
+  }
+
+  .products-textbox{
+    padding: 2vw;
+  }
+
+  .scene {
+    text-align: center;
+    width: 50vw;
+    height: 100vw;
+    margin: auto;
+    padding: 1vw;
+  }
+
+  .grouping h2{
+    font-size: 7vw;
+    line-height: 50px;
+  }
+
+  .grouping{
+    padding: 0px;
+  }
+
+  .card__face div{
+    display: block;
+  }
+
+  .card__face--front p{
+    font-size: 3vw;
+    padding: 2vw;
+    padding-top: 50px;
+  
+  }
+
+  .grid-images{
+    width: 40vw;
+    padding-top: 2vw;
+  }
+
+  .colour-circles-table {
+    position: static;
+  }
+
+  .colour-circles-table div{
+    display: inline-block;
+  }
+
+  .col{
+    height: 5vw;
+    width: 5vw;
+    border-radius: 50%;
+    padding: 2vw;
+  }
+
+  .products768{
+    display:block; /*to bring those into play*/
+  }
+
+  .card-back-text{
+    font-size: 30px;
+    margin: 25px;
+  }
+
+  /* PROCESS CARO*/
+
+  /* #process-caro{
+    height: 400vh;
+  } */
+
+  .swiper {
+    height: 100%;
+    display: block;
+  }
+
+  .swiper-slide {
+    width: 100%;
+    height: 50vw;
+  }
+
+  .slide-frame-1{
+    position: static; /*so that the text can sit below the frames*/
+    height: 100%;
+  }
+
+  .text-for-frames{
+    position: static;
+    width: 95%; /* extending width and moving it below the frames so it can be bigger*/
+    margin: auto;
+    margin-top: 3vw;
+    height: 85vw;
+    background-color: rgba(255, 255, 255, 0.149);
+    border-radius: 20px;
+    padding: 40px;
+  }
+  
+  .process-title{
+    margin-top: 15vw;
+    margin-bottom: 6vw;
+  }
+
+  .process-text{
+    margin: 0px;
+    line-height: 6vw;
+  }
+
+  .frame-paras{
+    width: 40%
+  }
+
+  .frame1-para{
+    font-size: 3vw;
+    line-height: 45px;
+  }
+
+  .frame1-title{
+    font-size: 8vw;
+    line-height: 60px;
+    margin-top: 0vw;
+    text-align: center;
+  }
+
+  .responsive-frame-instructions{
+    display: block;
+    font-size: 4vw;
+    margin-top: 3vw;
+  }
+
+  .normal-frame-instructions{
+    display: none;
+  }
+
+  .tabs{
+    margin-top: 40px;
+    width: 90%;
+    height: 290vw;
+  }
+
+  .tab-group__body{
+    height: 100%;
+  }
+
+  .tabs p{
+  font-size: 3vw;
+  line-height: 5.5vw;
+  }
+
+  .tab-titles::part(base){
+    font-size: 4vw;
+  }
+
+  .tab-base::part(base){
+    font-size: 3vw;
+  }
+
+  .tab-group__indicator {
+  color: red;}
+
+  .blocked-text div{
+    display: block;
+    padding: 0px;
+  } 
+
+  .panel-text{
+    width: 90%;
+  }
+
+  .gondola{
+    width: 60%;
+  }
+
+  .tab-header{
+    font-size:8vw;
+    line-height:9vw;
+  }
+
+  .blocked-text h3{
+    margin: 0px;
+    margin-top: 3vw;
+  }
+
+  .blocked-text p{
+    margin: 0px;
+  }
+
+  .pop-up-glasses{
+    width: 100%;
+    height: 500px;
+  }
+
+  .glass-pop{
+    left: 0%;
+    width: 150%;
+    height: 100%;
+  }
+
+  .textleft, .textright{
+    width: 90%;
+  }
+
+  /*about*/
+    
+  .circle-indicators{
+    font-size: 6vw;
+    z-index: 101;
+    position: absolute;
+  }
+
+  .b1{
+    left: 38%;
+    bottom: 66%;
+  }
+
+  .b2{
+    left: 17%;
+    bottom: 22%;
+  }
+
+  .b3{
+    left: 41%;
+    bottom: 38%;
+  }
+
+  .b4{
+    left: 73%;
+    bottom: 45%;
+  }
+
+  .b5{
+    display: none;
+  }
+
+  .b6{
+    left: 32%;
+    bottom: 88%;
+  }
+
+  .below-text{
+    text-align: center; /*centering the texts underneath the frames*/
+    margin: auto;
+    width: 95%;
+    /* height: 900px; */
+  }
+
+  .below-text p{
+    line-height: 5.5vw;
+    width: 90%;
+    text-align: left;
+    margin: auto;
+    margin-top: 4vw;
+    font-size: 3vw;
+  }
+
+  .about-instructions{
+    font-size: 4vw;
+  }
+
+  .about-texts{
+    margin-bottom: 5vw;
+    height: 100%;
+    line-height: 6vw;
+  }
+
+  .about-text{
+    font-size: 5vw;
+    line-height: 6vw;
+    margin-top: 8vw;
+  }
+
+  .about-texts h4{
+    margin-top: 7vw;
+  }
+
+  .about-texts h5{
+    font-size: 6vw;
+    margin-top: 4vw;
+  }
+
+  .box2{
+    top: -2%;
+  }
+
+  .box3{
+    top: -2%;
+  }
+
+  .box4{
+    top: -2%;
+  }
+
+  .box5{
+    top: -2%;
+  }
+
+  .box6{
+    top: -2%;
+  }
+
+  /* INQUIRIES */
+
+  .inq{
+    display: block; /*so the two sections now fall under each other to be vertically longer*/
+    text-align: left;  
+    width: 100vw;
+    margin:auto;
+  }
+
+  .inq div{
+    text-align: left;  
+    width: 100vw;
+    margin:auto;
+  }
+
+  .text-side{
+    width: 90%;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;  
+  }
+
+  .text-side div{
+    display: block;
+    padding: 0px;
+    width: 90%;
+    text-align: center;  
+  }
+
+  .form-side{
+    width: 90%;
+    margin-right:0px;
+    padding: 0px;
+  }
+
+  .inq-pull-out{
+    line-height: 5.5vw;
+    margin-top: 8vw;
+  }
+
+  .inq-title{
+    margin-top: 15vw;
+    text-align: center;  
+  }
+
+  .inq-para{
+    font-size: 4vw;
+  }
+
+  .input-validation-required::part(base) {
+    text-align:left;
+    width: 90vw;
+    margin: auto;
+  }
+
+  .product-select{
+    width: 90vw;
+  }
+
+  .fields{
+    width: 45vw;
+  }
+
+  .comment{
+    width: 90vw;
+  }
+
+  .check{
+    width: 90vw;
+  }
+
+  .submit-button::part(base) {
+    font-size: 20px;
+  }
+
+  .apresto{
+    left: 20%;
+  }
+
+  .ven2{
+    bottom: 2%;
+  }
+
+  .venice h1{
+    font-size: 7vw;  
+  }
+
+  .venice h5{
+    display:none;
+  }
+
+  .thankyou-message{
+    width: 90%;
+  }
+  
+  .thanks-content h1{
+    font-size: 9vw;
+    color: white;
+    padding-top: 6vw;
+  }
+  
+  .thanks-content h5{
+    font-size: 5vw;
+    margin: 0px;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+  }
+  
+  .thanks-content p{
+    font-size: 3vw;
+    margin-top: 1vw;
+    width: 80%;
+    line-height: 4.5vw;
+  }
+  
+  
+
+  footer{
+    text-align: center;
+    height:60vw;
+    margin: auto;
+    display: block;
+  }
+
+  .footer-logo{
+    width: 50vw;
+    padding-right:3vw;
+
+  }
+
+  footer p{
+    display: block;
+    font-size: 3vw;
+    padding: 0px;
+    text-align: center;
+  }
+
+  .sm-icons{
+    font-size: 4vw;
+  }
+
+}
+
+
+
+
+
+/*optimising for width of 360, height of 768*/
+
+@media only screen and (max-width: 360px) {
+
+  .stick{
+    right: 25%;
+    width: 70vw;
+  }
+
+  .fire-text{
+    top:25%;
+    left: 7%;
+  }
+
+  .fire-title{
+    font-size: 22vw;
+    line-height: 20vw;
+  }
+
+  .opening-para{
+    margin-top: 20px;
+    line-height: 9vw;
+    font-size: 8vw;
+  }
+
+  /* homepage */
+  .break360{
+    display: block; /*so that breaks dont occur until needed in responsive*/
+  }
+
+  .navbar a{
+    color: rgb(255, 255, 255);
+    font-size: 6vw;
+    display: block;
+    padding: 0.3em;
+    padding-bottom: 30px;
+    background-position: left bottom;  
+    /* http://jsfiddle.net/Markus_Steiger/wch6ara7/ */
+  }
+
+
+  svg{
+    width: 85vw;
+    margin-bottom: 2vw;
+  }
+
+  .svg-wrapper{
+    right: 10%;
+    top: 0%;
+  }
+
+  .info-box{
+    left: 0%;
+    top: 17%;
+    width: 100%;
+  }
+
+  .opening-title{
+    font-size: 10vw;
+    line-height: 40px;
+  }
+
+  .opening-text {
+    display: none; 
+  }
+
+  #opening{
+    position: relative; /* so the textbox can sit on top of it*/
+    object-fit: cover;  /* so the image takes up 100% of the parent div*/
+    width: 100vw;
+    height: 100vh; 
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .glass-bg{
+    overflow: hidden;
+  }
+
+  .glass-bg img{
+    object-fit: cover;
+    height: 100vh;
+    width: 160%;
+  }
+
+
+
+  h1{
+    font-size: 15vw;
+    margin-bottom: 40px;
+  }
+
+  h2{
+    font-size: 10vw;  
+    margin: 0px;
+    margin-bottom: 1vw;
+  }
+
+  h3{
+    font-size: 7vw;  
+    margin: 3vw; 
+  }
+
+  h4{
+    font-size: 5vw;   
+  }
+
+  p{
+    font-size: 1.5vw;
+  }
+
+
+  .opening-icons{
+    top: 440%;
+    right: 43%;
+  }
+
+  .play-button{
+    font-size: 14vw;
+    left: 230%;
+    bottom: -220px;
+
+  }
+
+  .down{
+    font-size: 6vw;
+  }
+
+  @keyframes bounce{
+    0%{
+      transform: translateY(45vw);
+  }
+
+    100%{
+      transform: translateY(47vw);
+    }
+  }
+
+  .grid-textbox {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+  }
+
+ 
+
+  .products-text{
+    font-size: 7vw;
+    line-height: 8vw;
+    text-align: center
+  }
+
+  .products-instructions{
+    font-size: 6vw;
+    padding-left: 0px;
+
+  }
+
+  .products-textbox{
+    padding: 2vw;
+  }
+
+  .scene {
+    text-align: center;
+    width: 100%;
+    height: 160vw;
+    margin: auto;
+    margin-bottom: 4vw;
+    padding: 1vw;
+  }
+
+
+  .grouping h2{
+    font-weight: 700;
+    margin: 0px;
+    font-size: 9vw;
+    line-height: 40px;
+  }
+
+  .card__face--front p{
+    font-size: 7vw;
+    padding: 2vw;
+  }
+
+  .grid-images{
+    width: 70vw;
+    padding-top: 2vw;
+  }
+
+  .colour-circles-table {
+    left: 14%;
+    bottom: 20%;
+  }
+
+  .col{
+    height: 9vw;
+    width: 9vw;
+    margin: 3vw;
+  }
+  
+  .grid-view-button{
+    margin-top: 0vw;
+  }
+
+  .card-back-text{
+    font-size: 25px;
+    margin: 25px;
+  }
+
+  /* PROCESS CARO*/
+
+  .responsive-frame-instructions{
+    font-size: 6vw;
+  }
+
+  .swiper {
+    padding-bottom: 0px;
+  }
+
+  .swiper-slide {
+    width: 100%;
+    height: 100%;
+  }
+
+  .f2{
+    left: 0%;
+    width: 100%;
+    height: 80%;
+  }
+
+  .process-text{
+    margin: 0px;
+    line-height: 9vw;
+  }
+
+  .text-for-frames{
+    text-align: left;  
+    width: 95%;
+    margin: auto;
+    margin-top: 2vw;
+    padding: 6vw;
+    height: 100%;
+  }
+
+  .tab3-text h3{
+    margin: 0px;
+    margin-top: 5vw;
+    line-height: 7vw;
+  }
+
+  .frame-paras{
+    width: 40%
+  }
+
+  .frame1-para{
+    top: 10%;
+    right: 35%;
+    width: 100%;
+    font-size: 4.5vw;
+    line-height: 30px;
+  }
+
+  .frame1-title{
+    font-size: 13vw;
+    line-height: 12vw;
+    text-align: center;
+    margin-top: 10px;
+  } 
+
+  .tabs{
+    margin-top: 20px;
+    height: 2200px;
+  }
+
+  .tab-titles::part(base){
+  font-size: 4vw;
+  }
+
+  .tab-base::part(base){
+  font-size: 3vw;
+  }
+
+  .blocked-text div{
+    display: block;
+    padding: 0px;
+  } 
+
+  .panel-text{
+    padding: 0px;
+    width: 95%;
+    font-size:4vw;
+  }
+
+  .tab-header{
+    font-size:13vw;
+    line-height:13vw;
+    margin-bottom: 3vw;
+  }
+
+  .imitations{
+    padding-top: 20px;
+  }
+
+  .tabs p{
+    font-size: 4.5vw;
+    line-height: 30px;
+  }
+
+  .gondola-div{
+    margin-top:50px;
+  }
+
+  .gondola{
+    width: 90%;
+  }
+
+  .firstcharacter{
+    font-size: 110px;
+  }
+
+  .panel-dop{
+    text-align: center;
+    width: 100%;
+    margin: auto;
+  }
+
+  .panel-dop img{
+    width: 70%;
+    margin: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .textleft, .textright{
+    width: 90%;
+  }
+
+  .tabbys{
+    height: 100%;
+  }
+
+  .circle-indicators{
+    font-size: 8vw;
+  }
+
+  .b1{
+    left: 36%;
+    bottom: 64%;
+  }
+
+  .b2{
+    left: 15%;
+    bottom: 20%;
+  }
+
+  .b3{
+    left: 35%;
+    bottom: 37%;
+  }
+
+  .b4{
+    left: 70%;
+    bottom: 43%;
+  }
+
+  .b5{
+    display:none
+  }
+
+  .b6{
+    left: 30%;
+    bottom: 84%;
+  }
+
+  .positioned-elements{
+    height: 100%;
+  }
+
+  .below-text{
+    text-align: center;
+    margin: auto;
+    width: 95%;
+  }
+
+  .about-instructions{
+    font-size: 5.5vw;
+    margin-top: 6vw;
+  }
+
+  .about-texts{
+    width: 100%;
+    margin-top: 2vw;
+    margin-bottom: 5vw;
+    padding-bottom: 2vw;
+  }
+
+  .about-texts p{
+    font-size: 5vw;
+    line-height: 9vw;
+  }
+
+  .about-texts h5{
+    font-size: 10vw;
+    line-height: 11vw;
+    margin: 0px;
+    margin-top: 3vw;
+  }
+
+  .about-text{
+    font-size: 7vw;
+    line-height: 8vw;
+  }
+
+  .box2{
+    top: -2%;
+    height: 100%;
+  }
+
+  .box3{
+    top: -2%;
+    height: 100%;
+  }
+
+  .box4{
+    top: -2%;
+    height: 100%;
+  }
+
+  .box5{
+    top: -2%;
+    height: 100%;
+  }
+
+  .box6{
+    top: -2%;
+    height: 100%;
+  }
+
+  /* INQUIRIES */
+
+  .text-side{
+    width: 90%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .form-side{
+    width: 100vw;
+    margin-right:0px;
+  }
+
+  .inq-pull-out{
+    line-height: 8vw;
+    font-size: 7vw;
+    padding-top: 0px;
+  }
+
+  .inq-title{
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .inq-para{
+    font-size: 5vw;
+    line-height: 7vw;
+  }
+
+  .product-select{
+    width: 90vw;
+    padding-right: 10px;
+    padding-top: 10px;
+  }
+
+  .fields{
+    width: 90vw;
+    padding-right: 10px;
+    padding-top: 10px;
+  }
+
+  .comment{
+    width: 90vw;
+    padding-right: 10px;
+  }
+
+  .check{
+    width: 90vw;
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
+
+  .submit-button::part(base) {
+    font-size: 20px;
+  }
+
+  .apresto{
+    bottom: 16%;
+  }
+
+  .ven2{
+    bottom: 2%;
+  }
+
+  .venice h1{
+    font-size: 7vw; 
+    margin-bottom: 0px; 
+  }
+
+  .thankyou-message{
+    width: 95%;
+    margin-bottom: 3vw;
+
+  }
+  
+  .thanks-content h1{
+    font-size: 10vw;
+    color: white;
+    padding-top: 6vw;
+  }
+  
+  .thanks-content h5{
+    font-size: 6vw;
+    margin: 0px;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+  }
+  
+  .thanks-content p{
+    font-size: 4vw;
+    margin-top: 1vw;
+    width: 90%;
+    line-height: 5.5vw;
+  }
+
+  footer{
+    height:60vw;
+    width: 100%;
+  }
+
+  .footer-logo{
+    width: 50vw;
+    padding-right:3vw;
+  }
+
+  footer p{
+    font-size: 3vw;
+    padding: 0px;
+  }
+
+  .sm-icons{
+    padding-right: 1vw;
+    font-size: 4vw;
+  }
+
+}
+
+
